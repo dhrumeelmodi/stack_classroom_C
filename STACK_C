@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<conio.h>
+#define S 10
+int top=-1;
+int s[S];
+void push(int [],int);
+int pop(int []);
+void display(int []);
+int change(int [],int,int);
+void main()
+{
+	int ch,x,j,p;
+	clrscr();
+	printf("Enter 1 for push:");
+	printf("\nEnter 2 for pop:");
+	printf("\nEnter 3 for display:");
+	printf("\nEnter 4 for change:");
+	printf("\nEnter 5 for exit:");
+	while(ch!=5)
+	{
+	printf("Enter your pasandh:");
+	scanf("%d",&ch);
+
+	switch(ch)
+	{
+		case 1:
+		{
+			printf("Enter the insert value:");
+			scanf("%d",&x);
+			push(s,x);       //for insert a value.
+			break;
+		}
+		case 2:
+		{
+			j=pop(s);       //for delete a value.
+			printf("delete= %d",j);
+			break;
+		}
+		case 3:
+		{
+			display(s);      //for print a list of value.
+			break;
+		}
+		case 5:
+		{
+			exit(0);
+		}
+		case 4:
+		{
+			printf("Which position :");
+			scanf("%d",&p);
+			printf("Which value :");
+			scanf("%d",&x);
+			change(s,p,x);  //for change a particular value by x.
+			break;
+		}
+		default:
+			exit(0);
+	}
+	}	//end of while.
+getch();
+}
+void push(int s[],int x)
+{
+
+	if(top==S)
+	{
+		printf("Stac is overflow.");
+		return;
+	}
+	top++;
+	s[top]=x;
+}
+int pop(int s[])
+{
+	if(top==-1)
+	{
+		printf("stack is underflow");
+		return(0);
+	}
+	top=top-1;
+	return(s[top+1]);
+}
+void display(int s[])
+{
+	int i;
+	for(i=top;i>=0;i--)
+	{
+		printf("%d\n",s[i]);
+	}
+}
+int change(int s[],int p,int x)
+{
+	if(top-p+1<0)
+	{
+
+		printf("stack underflow.\n");
+		return(0);
+	}
+	s[top-p+1]=x;
+	return(0);
+}
